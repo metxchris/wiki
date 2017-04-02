@@ -1,0 +1,13 @@
+modifier: PMario
+created: 201109061212
+tags: systemCSS cmInfo
+
+/***
+possible tags can be seen at: CodeMirrorConfig
+***/
+/*{{{*/
+a {
+	text-decoration: underline
+}
+/*}}}*/
+

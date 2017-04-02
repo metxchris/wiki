@@ -1,0 +1,191 @@
+modifier: PMario
+tags: cmtw 
+
+! ~CodeMirror Info
+<<<
+* Learn more at: http://codemirror.net/manual.html
+* If this list is missing something, just have a look at the above page and add it :)
+* Every parameter that is a (function) @@needs a corresponding CM addOn function@@ to work with TW.
+* This tiddler is a shadow tiddler. If you mess it up, just delete it, and you'll get a "vanilla" copy :)
+<<<
+! Settings
+<<<
+If your mode is not listed here, the corresponding library is not included at your TW. See CodeMirrorPluginInfo tiddler at the "How to roll your own" section/heading.
+
+''Possible Modes'' .. {{{<<cmModes>>}}}
+><<cmModes>>
+''Possible MIMEs'' .. {{{<<cmMimes>>}}}
+><<cmMimes>>
+<<<
+!!! global
+{{{
+tabSize: 4
+// (d) 4 .. if indentWithTabs is true, it should be same as indentUnit otherwise it behaves strange!
+
+indentUnit: 4
+// (d) 2 .. how many space a block is indented.
+
+indentWithTabs: true
+// (d) false || true
+
+lineNumbers: true
+// show line numbers
+
+matchBrackets: true
+// Determines whether brackets are matched whenever the cursor is moved next to a bracket.
+
+electricChars: false
+// Configures whether the editor should re-indent the current line, when an electric character is typed
+
+extraKeys: smartTab
+// IMPORTANT: chkInsertTabs cookie needs to be _de-activated_ otherwise extraKeys are ignored
+// smartTab .. tab insert tab char. If text is selected tab indent block, shift-tab unindent block  
+// simpleTab .. tab insert tab char. If text is selected, it will bedeleted!
+
+extraKeys: toggleMaxHeight
+// F11 .. maximize editor height
+}}}
+
+!!! null
+>default mode has an unlucky name
+{{{
+tags: 
+mode: text/plain
+indentWithTabs: true
+tabSize: 4
+indentUnit: 4
+}}}
+
+!!! tiddlywiki
+{{{
+tags: 
+mode: tiddlywiki
+indentWithTabs: true
+tabSize: 4
+indentUnit: 4
+lineWrapping: true
+}}}
+
+!!! javascript
+{{{
+tags: systemConfig
+mode: javascript
+indentWithTabs: true
+tabSize: 4
+indentUnit: 4
+electricChars: true
+}}}
+
+!!! xml
+{{{
+tags: 
+mode: xml
+}}}
+
+!!! css
+{{{
+tags: systemCSS
+mode: css
+}}}
+
+!!! htmlmixed
+{{{
+tags: systemTheme
+mode: htmlmixed
+}}}
+
+!!! python
+{{{
+tags: 
+mode: python
+}}}
+
+!!! xmlpure
+{{{
+tags: 
+mode: xmlpure 
+}}}
+
+!!! php
+{{{
+tags: 
+mode: application/x-httpd-php
+}}}
+
+!!! clike
+{{{
+tags: 
+mode: clike
+}}}
+
+!!! stex
+{{{
+tags: 
+mode: stex
+}}}
+
+!!! haskell
+{{{
+tags: 
+mode: haskell
+}}}
+
+!!! ruby
+{{{
+tags: 
+mode: ruby
+}}}
+
+!!! smalltalk
+{{{
+tags: 
+mode: smalltalk
+}}}
+
+!!! plsql
+{{{
+tags: 
+mode: plsql
+}}}
+
+!!! lua
+{{{
+tags: 
+mode: lua
+}}}
+
+!!! scheme
+{{{
+tags: 
+mode: scheme
+}}}
+
+!!! rst
+{{{
+tags: 
+mode: rst
+}}}
+
+!!! yaml
+{{{
+tags: 
+mode: yaml
+}}}
+
+!!! sparql
+{{{
+tags: 
+mode: sparql
+}}}
+
+!!! velocity
+{{{
+tags: 
+mode: velocity
+}}}
+
+!!! r
+{{{
+tags: 
+mode: r
+}}}

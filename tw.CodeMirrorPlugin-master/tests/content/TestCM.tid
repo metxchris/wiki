@@ -1,0 +1,19 @@
+modifier: PMario
+created: 201109061212
+tags: cmInfo
+
+/***
+! heading 1
+***/
+
+//{{{
+
+var a = 0;
+
+for (var i=0; i < 10; i++) {
+	hallo
+        
+}
+
+//}}}
+

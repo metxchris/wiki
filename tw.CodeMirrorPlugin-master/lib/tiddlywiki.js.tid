@@ -1,0 +1,23 @@
+modifier: PMario
+tags: systemConfig cmtw excludeLists excludeMissing
+
+
+//{{{
+/***
+|''Name''|tiddlywiki.js|
+|''Description''|Enables TiddlyWikiy syntax highlighting using CodeMirror|
+|''Author''|PMario|
+|''Version''|0.1.7|
+|''Status''|''stable''|
+|''Source''|[[GitHub|https://github.com/pmario/CodeMirror2/blob/tw-syntax/mode/tiddlywiki]]|
+|''Documentation''|http://codemirror.tiddlyspace.com/|
+|''License''|[[MIT License|http://www.opensource.org/licenses/mit-license.php]]|
+|''CoreVersion''|2.5.0|
+|''Requires''|codemirror.js|
+|''Keywords''|syntax highlighting color code mirror codemirror|
+! Info
+CoreVersion parameter is needed for TiddlyWiki only!
+***/
+//{{{
+CodeMirror.defineMode("tiddlywiki",function(e,t){function y(e,t,n){return t.tokenize=n,n(e,t)}function b(e,t){var n=!1,r;while((r=e.next())!=null){if(r==t&&!n)return!1;n=!n&&r=="\\"}return n}function S(e,t,n){return w=e,E=n,t}function x(e,t){var n=e.sol(),i,v;t.block=!1,i=e.peek();if(n&&/[<\/\*{}\-]/.test(i)){if(e.match(d))return t.block=!0,y(e,t,k);if(e.match(f))return S("quote","quote");if(e.match(u)||e.match(a))return S("code","code");if(e.match(l)||e.match(c)||e.match(h)||e.match(p))return S("code","code");if(e.match(o))return S("hr","hr")}i=e.next();if(n&&/[\/\*!#;:>|]/.test(i)){if(i=="!")return e.skipToEnd(),S("header","header");if(i=="*")return e.eatWhile("*"),S("list","list");if(i=="#")return e.eatWhile("#"),S("list","list");if(i==";")return e.eatWhile(";"),S("list","list");if(i==":")return e.eatWhile(":"),S("list","list");if(i==">")return e.eatWhile(">"),S("quote","quote");if(i=="|")return S("table","table")}if(i=="{"&&e.match(/\{\{/))return y(e,t,k);if(/[hf]/i.test(i)&&/[ti]/i.test(e.peek())&&e.match(/\b(ttps?|tp|ile):\/\/[\-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/i))return S("link-external","link-external");if(i=='"')return S("string","string");if(i=="~")return S("text","brace");if(/[\[\]]/.test(i)&&e.peek()==i)return e.next(),S("brace","brace");if(i=="@")return e.eatWhile(s),S("link-external","link-external");if(/\d/.test(i))return e.eatWhile(/\d/),S("number","number");if(i=="/"){if(e.eat("%"))return y(e,t,N);if(e.eat("/"))return y(e,t,L)}if(i=="_"&&e.eat("_"))return y(e,t,A);if(i=="-"&&e.eat("-")){if(e.peek()!=" ")return y(e,t,O);if(e.peek()==" ")return S("text","brace")}if(i=="'"&&e.eat("'"))return y(e,t,C);if(i!="<")return S(i);if(e.eat("<"))return y(e,t,M);e.eatWhile(/[\w\$_]/);var m=e.current(),g=r.propertyIsEnumerable(m)&&r[m];return g?S(g.type,g.style,m):S("text",null,m)}function T(e){return function(t,n){return b(t,e)||(n.tokenize=x),S("string","string")}}function N(e,t){var n=!1,r;while(r=e.next()){if(r=="/"&&n){t.tokenize=x;break}n=r=="%"}return S("comment","comment")}function C(e,t){var n=!1,r;while(r=e.next()){if(r=="'"&&n){t.tokenize=x;break}n=r=="'"}return S("text","strong")}function k(e,t){var n,r=t.block;return r&&e.current()?S("code","code"):!r&&e.match(g)?(t.tokenize=x,S("code","code-inline")):r&&e.sol()&&e.match(v)?(t.tokenize=x,S("code","code")):(n=e.next(),r?S("code","code"):S("code","code-inline"))}function L(e,t){var n=!1,r;while(r=e.next()){if(r=="/"&&n){t.tokenize=x;break}n=r=="/"}return S("text","em")}function A(e,t){var n=!1,r;while(r=e.next()){if(r=="_"&&n){t.tokenize=x;break}n=r=="_"}return S("text","underlined")}function O(e,t){var n=!1,r,i;while(r=e.next()){if(r=="-"&&n){t.tokenize=x;break}n=r=="-"}return S("text","line-through")}function M(e,t){var n,r,s,o;return e.current()=="<<"?S("brace","macro"):(n=e.next(),n?n==">"&&e.peek()==">"?(e.next(),t.tokenize=x,S("brace","macro")):(e.eatWhile(/[\w\$_]/),s=e.current(),o=i.propertyIsEnumerable(s)&&i[s],o?S(o.type,o.style,s):S("macro",null,s)):(t.tokenize=x,S(n)))}var n=e.indentUnit,r=function(){function e(e){return{type:e,style:"text"}}return{}}(),i=function(){function e(e){return{type:e,style:"macro"}}return{allTags:e("allTags"),closeAll:e("closeAll"),list:e("list"),newJournal:e("newJournal"),newTiddler:e("newTiddler"),permaview:e("permaview"),saveChanges:e("saveChanges"),search:e("search"),slider:e("slider"),tabs:e("tabs"),tag:e("tag"),tagging:e("tagging"),tags:e("tags"),tiddler:e("tiddler"),timeline:e("timeline"),today:e("today"),version:e("version"),option:e("option"),"with":e("with"),filter:e("filter")}}(),s=/[\w_\-]/i,o=/^\-\-\-\-+$/,u=/^\/\*\*\*$/,a=/^\*\*\*\/$/,f=/^<<<$/,l=/^\/\/\{\{\{$/,c=/^\/\/\}\}\}$/,h=/^<!--\{\{\{-->$/,p=/^<!--\}\}\}-->$/,d=/^\{\{\{$/,v=/^\}\}\}$/,m=/\{\{\{/,g=/.*?\}\}\}/,w,E;return{startState:function(e){return{tokenize:x,indented:0,level:0}},token:function(e,t){if(e.eatSpace())return null;var n=t.tokenize(e,t);return n},electricChars:""}}),CodeMirror.defineMIME("text/x-tiddlywiki","tiddlywiki");
+//}}}

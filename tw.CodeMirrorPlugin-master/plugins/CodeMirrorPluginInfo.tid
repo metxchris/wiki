@@ -1,0 +1,238 @@
+modifier: PMario
+tags: cmtw
+content-type: text/x-tiddlywiki
+
+|''Name''|CodeMirrorPluginInfo|
+|''Description''|Documentation for [[zCodeMirrorPlugin]]|
+|''Author''|PMario|
+|''Source''|https://github.com/pmario/tw.CodeMirrorPlugin|
+|''Documentation''|http://codemirror.tiddlyspace.com/|
+|''Feedback''|Feedback is very welcome at [[TWGroup]]|
+|''License''|see: [[zCodeMirrorPlugin]]|
+|''Keywords''|editor syntax highlighting color code|
+!Documentation
+!!!! ToolbarCommands
+<<<
+There are 2 new toolbar commands:
+* {{{cmEdit}}} .. open tiddler for codemirror edit mode. Add this one to ToolbarCommands "~ViewToolbar" slice.
+* {{{cmSave}}} .. open tiddler for codemirror edit mode. Add this one to ToolbarCommands "~EditToolbar" slice.
+<<<
+!!!! ViewTemplate
+<<<
+Add the following span to the ViewTemplate tiddler at "subtitle" definition.
+<!--{{{-->
+(type: <span macro='view content-type link'></span>)
+<!--}}}-->
+<<<
+!!!! EditTemplate
+<<<
+To change the source type, add the following line to the EditTemplate, right below the "edit title" macro.
+<!--{{{-->
+<div class='toolbar' macro='typeChooser'></div>
+<!--}}}-->
+<<<
+!!!! TiddlySpace Icons
+<<<
+If you use codemirror editor with TiddlySpace you'll need to create new icons
+* Just create a new tiddler named [[cmEdit]] and copy the [[editTiddler]] content into "cmEdit". 
+* [[saveTiddler]] goes to [[cmSave]].
+* There is an [[editTiddlerReadOnly]] icon, which is basically a "view icon". For codemirror, there is no need to change this one.
+<<<
+!!!! Global Settings
+<<<
+* <<option chkInsertTab>>chkInsertTab option cookie ''should be disabled'' to use CM key-handling. If {{{chkInsertTab}}} is active, keyhandling is hardcoded. {{{extraKeys}}} settings in CodeMirrorConfig are ignored. 
+* Learn more at ExtraKeysAddOn plugin. 
+<<<
+!!!! StyleSheet
+<<<
+* The plugin automatically creates a shadow StyleSheetCodeMirror tiddler, that can be adjusted to your needs.
+<<<
+!!!! Macros
+<<<
+The plugin contains some additional macros, to get an overview, which modes are activated.
+
+Modes: {{{<<cmModes>>}}} ... displays the usable modes seen below.
+> Available Modes: <<cmModes>>
+MIMEs: {{{<<cmMimes>>}}} ... displays the usable mime types seen below. Same order as modes.
+> Available MIMEs: <<cmMimes>>
+<<<
+!!!! Text
+<<<
+{{{
+ {{{
+ This will produce a plain text block!
+ }}}
+}}}
+{{{
+This is a plain text block!
+}}}
+<<<
+!!!! CSS
+<<<
+{{{
+ /*{{{*/
+ .cssClass {
+	display: block; !important;
+ }
+ /*}}}*/
+}}}
+will render like:
+/*{{{*/
+.cssClass {
+	display: block; !important;
+}
+/*}}}*/
+<<<
+!!!! XML
+<<<
+{{{
+<!--{{{-->
+<html>
+	<div id='myId' class='dp50'>some text </div>
+</html>
+<!--}}}-->
+}}}
+will render like:
+<!--{{{-->
+<html>
+	<div id='myId' class='dp50'>some text </div>
+</html>
+<!--}}}-->
+<<<
+!!!! Plugin
+<<<
+{{{
+//{{{
+(function($) {
+	config.macros.highlightSyntax = {
+		var a = b = 0;
+		// your code here!
+	}
+})(jQuery);
+//}}}
+}}}
+will render like:
+//{{{
+(function($) {
+	config.macros.highlightSyntax = {
+		var a = b = 0;
+		// your code here!
+	}
+})(jQuery);
+//}}}
+<<<
+!!!! Code sample
+<<<
+<!--{{{-->
+<code class="brush:javascript">
+// comment
+var a = b = 0;
+a = 17;
+</code>
+<!--}}}-->
+will render like 
+<code class="brush:javascript">
+// comment
+var a = b = 0;
+a = 17;
+</code>
+<<<
+!! Advanced Options
+<<<
+Guess syntax: <<option chkGuessSyntax>> .. If activated, ~TiddlyWiky <pre> blocks will be rendered according to there block braces, like described obove.
+Expert mode: <<option chkExpertSyntax>> .. If activated, additional values below will be used
+
+{{{ {{{ }}} txtShText: <<option txtShText>> eg: 'brush:text'
+{{{ /*{{{*/ }}} txtShCss: <<option txtShCss>> eg: 'brush:css'
+{{{ //{{{ }}} txtShPlugin: <<option txtShPlugin>> 'brush:js'
+{{{ <!--{{{-->> }}} txtShXml: <<option txtShXml>> 'brush:xml'
+
+If you want to change the default values eg for C++, add the following to a [[zzConfig]] tiddler and tag it "systemConfig"
+//{{{
+config.options.chkGuessSyntax = true;
+config.options.chkExpertSyntax = true;
+
+config.options.txtShPlugin = 'brush:clike';
+//}}}
+and use the following backets to cover your code
+{{{
+//{{{
+   cpp code comes here.
+//}}}
+}}}
+
+All possible "brushes" can be found at: [[CodeMirror homepage|http://codemirror.net]]
+<<<
+!! You need a different mode?
+* Go to [[CodeMirror compression API page| http://codemirror.net/compress.html]] 
+* Select your mode
+* Create a minified version
+* Copy paste it into a tiddler eg: clike.js
+** Add the line {{{|''Requires''|codemirror.js|}}} at the top of the tiddler
+*** see eg: [[css.js]]
+** Tag the new tiddler ''systemConfig''
+** Save and reload
+* Have a look at Advanced options or use the {{{<code class="brush: ... >}}} tag described above.
+
+!! List needed tiddlers tagged "cmtw" and "cmtwAddOn"
+<<<
+''If you want to roll your own version, the following tiddlers are needed.''
+<<list filter [tag[cmtw]]>>
+<<<
+<<<
+''There are usefull addOns too'' 
+<<list filter [tag[cmtwAddOn]]>>
+<<<
+!!! highlightSyntax Macro
+<<<
+*The {{{highlightSyntax}}} macro is only needed if you have inline html blocks, like shown below.
+<!--{{{-->
+<html>
+	<pre class='brush:clike'>
+		// your code 
+	</pre>
+</html>
+
+<<highlightSyntax>> .. will render the <pre> blocks shown above.
+<!--}}}-->
+<<<
+!!!! Parameters
+<<<
+{{{<<highlightSyntax [tagName]>>}}}
+*will render all blocks, with any defined tag name. eg: tagName = code.
+*[tagName] is optional. Default is "pre".
+<<<
+!!! Revision History
+<<<
+* V 0.2.8 2012-06-23
+** "smartTab" handling adjusted. see: ExtraKeysAddOn
+** minor documentation adjustments about ViewTemplate, EditTemplate requirements.
+* V 0.2.7 2012-03-13
+** Editor refresh fixed, TypeChooser height fixed.
+* V 0.2.6 2012-03-13
+** Added functions to make editor height persistent.
+* V 0.2.5 2012-02-07
+** update codemirror library to v2.21 including all "support" libraries.
+** TAB key handling improved. Extra keys handling moved to ExtraKeysAddOn
+** F11 toggle editor height moved to ExtraKeysAddOn.
+* V 0.2.4 2012-01-31
+** slightly better TAB key handling. Internal testing only
+* V 0.2.3 2012-01-11
+** renames everything codemirror2 -> codemirror
+** Toggle max height mode implemented hardcoded key: 'F11'
+* V 0.2.1 2012-01-10
+** Toggle max height mode implemented hardcoded key: 'F11'
+* V 0.2.0 2011-10-23
+** update to codeMirror lib v2.2
+** indentation / tab handling fix
+* V 0.1.7 2011-10-27
+** little docu fix
+* V 0.1.6 2011-10-05
+** several bug fixes
+** improved handling, initializing ...
+* V 0.1.4 2011-09-25
+** resize hack changed
+* V 0.1.0 2011-09-07
+** inital release
+<<<
+

@@ -1,0 +1,55 @@
+modifier: PMario
+modified: 201110051200
+tags: default mainMenu cmInfo
+
+! Features
+* Realtime highlighting in edit mode for {{{tiddlywiki, javascript, css, html, xml, python}}} syntax.
+** Other modes are possible too. 
+* F11 toggles editor height.
+** This setting is persistent. So if the tiddler is opened again, it will be set to "max" or "min".
+* smart tab handling.
+** <tab> key inserts a tab character
+** If some text/lines are selected it indents the block.
+*** <shift><tab> unindents the block.
+! Info
+* This is the presentation space of the TiddlyWiki implementaion of CodeMirror Library. »The in-browser code editing library«
+* @codemirror-plugin space contains all plugins needed. 
+* Read CodeMirrorPluginInfo to get more information about the possibilities.
+* Feedback is very welcome at [[TiddlyWiki group|TWGroup]]
+! ~ToolbarCommands
+''Your ToolbarCommands tiddler has to contain {{{cmEdit}}} and {{{cmSave}}} commands!'' This is not automatically updated by the plugin!
+! Modes
+At the moment, there are 2 modes:
+* view mode
+** view mode mainly depends on TW code block indicators. Learn more at: CodeMirrorPluginInfo
+* edit mode
+** edit mode depends on: ''tags'', ''content-type'' and ''server.content-type'' fields
+** tag has the highest priority and can be adjusted at: CodeMirrorConfig 
+** content-type can be edited in "edit mode :)". The selector button is near the toolbar commands. Have a look at the EditTemplate {{{<span macro='typeChooser'></span>}}}
+! ''Important for TiddlySpace''
+* ''Include the [[codemirror-plugins]] space into your TW if you want to use it!''
+* Then carefully read the documentation.
+* ''Do not include this "codemirror" space'' into your space! Most TS themes don't like it, if there StyleSheet tiddler is overwritten.
+! Configuration
+CodeMirror has a lot of configuration options, which can be seen at [[CodeMirror manual page|http://codemirror.net/manual.html]]
+This TW uses CodeMirrorConfig tiddler, to make them available.
+''global'' section
+<<<
+The global section contains the "default" behaviour, adjusted to my needs :) They may vary for your needs. The config tiddler is a shadow tiddler. So if you mess up the configuration, just delete it, reload and start over again.
+<<<
+''mode'' section
+<<<
+The mode section overwrites the global setting. 
+''tags'' parameter defines the tags, that you use to identify different edit modes.
+<<<
+! View Mode Test Tiddlers
+All tiddlers named "runMode*" are for testing the CodeMirror runMode() function. They don't have any edit mode identifier assigned. So it initially will be "text/plain".
+<<list filter [tag[runMode]]>>
+! Edit Mode
+The following tiddlers are used to test the edit mode identification process
+* [[testTag]] .. the tag defined at ~CodeMirrorPlugin define the edit mode.
+* [[testContentType]] .. toolbar command: more: fields shows the content-type field 
+* [[testServerContentType]]  .. toolbar command: more: fields shows the server.content-type field
+* The tag has the highest priority.
+
+

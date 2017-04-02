@@ -1,0 +1,12 @@
+modifier: PMario
+created: 201109011212
+
+/*{{{*/
+.CodeMirror {
+    font-family: Inconsolata, monospace;
+}
+
+#sidebar {
+    overflow: hidden;
+}
+/*}}}*/

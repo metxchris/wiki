@@ -1,0 +1,8 @@
+backups
+commits
+tmp
+**.html
+*.zip
+*.jar
+*.list
+*~

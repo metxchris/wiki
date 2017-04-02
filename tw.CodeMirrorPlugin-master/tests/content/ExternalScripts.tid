@@ -1,0 +1,6 @@
+modifier: PMario
+
+./plugins/zCodeMirrorPlugin.js
+./plugins/CMEditCommands.js
+./plugins/RenderBufferPlugin.js
+./plugins/ExtraKeysAddOn.js

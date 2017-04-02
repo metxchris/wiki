@@ -1,0 +1,4 @@
+/***
+|''Requires''|codemirror.js|
+|''License''|[[codemirror.js]]|
+***/

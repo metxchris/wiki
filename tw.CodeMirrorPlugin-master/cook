@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# This is a sample cook script to be used with the build scripts
+# and Makefile for TiddlyWiki. Adjust this script and then install
+# it somewhere on your $PATH, such as ~/bin.
+#
+
+# Change this to where you have the cooker code installed
+COOKER_TRUNK=/media/Daten/Git/tiddly/tools/cooker
+
+ruby -Ku -C $COOKER_TRUNK cook.rb "$@"
